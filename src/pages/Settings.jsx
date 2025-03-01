@@ -57,7 +57,7 @@ const Settings = () => {
   
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-kawaii text-kawaii-pink mb-6">Settings</h1>
+      <h1 className="text-3xl font-kawaii text-kawaii-pink mb-6">Configurações</h1>
       
       <div className="space-y-6">
         <motion.div 
@@ -65,10 +65,10 @@ const Settings = () => {
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.2 }}
         >
-          <h2 className="text-xl font-semibold mb-4">Account</h2>
+          <h2 className="text-xl font-semibold mb-4">Conta</h2>
           
           <div className="mb-4">
-            <p className="text-sm text-gray-600 dark:text-gray-400">Logged in as</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Sessão iniciada como</p>
             <p className="font-medium">{currentUser?.username}</p>
             <p className="text-sm text-gray-500">{currentUser?.email}</p>
           </div>
@@ -78,7 +78,7 @@ const Settings = () => {
             className="flex items-center text-red-500 font-medium"
           >
             <FaSignOutAlt className="mr-2" />
-            Logout
+            Sair
           </button>
         </motion.div>
         
@@ -87,11 +87,11 @@ const Settings = () => {
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.2 }}
         >
-          <h2 className="text-xl font-semibold mb-4">Appearance</h2>
+          <h2 className="text-xl font-semibold mb-4">Aparência</h2>
           
           <div className="mb-6">
             <div className="flex justify-between items-center">
-              <span>Dark Mode</span>
+              <span>Modo Escuro</span>
               <button
                 onClick={toggleTheme}
                 className={`p-2 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-pastel-lilac'}`}
@@ -102,10 +102,10 @@ const Settings = () => {
           </div>
           
           <div className="mb-6">
-            <label className="block text-sm font-medium mb-2">Theme Color</label>
+            <label className="block text-sm font-medium mb-2">Cor do Tema <FaLock/></label>
             <div className="flex space-x-2">
               {colorOptions.map((color) => (
-                <button
+                <button 
                   key={color.value}
                   onClick={() => changeColor(color.value)}
                   className={`w-10 h-10 rounded-full border-2 ${
@@ -120,7 +120,7 @@ const Settings = () => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium mb-2">Font Style</label>
+            <label className="block text-sm font-medium mb-2">Estilo de Fonte<FaLock/></label>
             <div className="flex space-x-2">
               {fontOptions.map((font) => (
                 <button
@@ -144,13 +144,13 @@ const Settings = () => {
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.2 }}
         >
-          <h2 className="text-xl font-semibold mb-4">Privacy</h2>
+          <h2 className="text-xl font-semibold mb-4">Privacidade</h2>
           
           <div className="flex justify-between items-center mb-6">
             <div>
-              <p className="font-medium">Private Mode</p>
+              <p className="font-medium">Modo Privado</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Require authentication to view entries
+                Necessário autenticação para ver registros
               </p>
             </div>
             <button
@@ -167,14 +167,14 @@ const Settings = () => {
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.2 }}
         >
-          <h2 className="text-xl font-semibold mb-4">Data</h2>
+          <h2 className="text-xl font-semibold mb-4">Dados</h2>
           
           <button
             onClick={handleExport}
             className="flex items-center text-kawaii-blue font-medium"
           >
             <FaDownload className="mr-2" />
-            Export Diary Entries
+            Exportar dados
           </button>
         </motion.div>
         
@@ -185,7 +185,7 @@ const Settings = () => {
           whileTap={{ scale: 0.95 }}
           className="kawaii-button w-full"
         >
-          {isLoading ? 'Saving...' : 'Save Settings'}
+          {isLoading ? 'Salvando...' : 'Salvar Configurações'}
         </motion.button>
       </div>
     </div>

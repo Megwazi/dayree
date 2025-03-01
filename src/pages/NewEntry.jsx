@@ -2,16 +2,17 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import { FaArrowLeft, FaTimes, FaPlus } from 'react-icons/fa';
 import EmojiPicker from 'emoji-picker-react';
 import { useDiary } from '../context/DiaryContext';
 import { useTheme } from '../context/ThemeContext';
 
 const moods = [
-  { name: 'happy', emoji: '😊', color: 'pastel-yellow' },
-  { name: 'sad', emoji: '😢', color: 'pastel-blue' },
-  { name: 'love', emoji: '❤️', color: 'kawaii-pink' },
-  { name: 'angry', emoji: '😠', color: 'pastel-pink' }
+  { name: 'feliz', emoji: '😊', color: 'pastel-yellow' },
+  { name: 'triste', emoji: '😢', color: 'pastel-blue' },
+  { name: 'amor', emoji: '❤️', color: 'kawaii-pink' },
+  { name: 'raiva', emoji: '😠', color: 'pastel-pink' }
 ];
 
 const NewEntry = () => {
@@ -66,7 +67,7 @@ const NewEntry = () => {
         navigate(`/app/entry/${entryId}`);
       }
     } catch (error) {
-      console.error('Error saving entry:', error);
+      console.error('Erro ao salvar:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -81,7 +82,7 @@ const NewEntry = () => {
         >
           <FaArrowLeft className="text-xl" />
         </button>
-        <h1 className="text-2xl font-kawaii text-kawaii-pink">New Entry</h1>
+        <h1 className="text-2xl font-kawaii text-kawaii-pink">Novo Registro</h1>
         <div className="w-6"></div> {/* Empty div for flex spacing */}
       </div>
       
@@ -89,7 +90,7 @@ const NewEntry = () => {
         <div>
           <input
             type="text"
-            placeholder="Entry title..."
+            placeholder="Título do Registro..."
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="kawaii-input w-full text-lg font-semibold"
@@ -99,13 +100,13 @@ const NewEntry = () => {
         
         <div className="mb-4">
           <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-            {format(new Date(), 'EEEE, MMMM do, yyyy')}
+            {format(new Date(), "EEEE, d 'de' MMMM 'de' yyyy", {locale: ptBR})}
           </p>
         </div>
         
         <div className="relative">
           <textarea
-            placeholder="What's on your mind today?"
+            placeholder="O quê tem em mente hoje?"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             className="kawaii-input w-full min-h-[200px] resize-none"
@@ -128,7 +129,7 @@ const NewEntry = () => {
         </div>
         
         <div>
-          <label className="block text-sm font-medium mb-2">How are you feeling?</label>
+          <label className="block text-sm font-medium mb-2">Como está se sentindo?</label>
           <div className="flex justify-between">
             {moods.map((m) => (
               <button
@@ -152,7 +153,7 @@ const NewEntry = () => {
           <div className="flex items-center">
             <input
               type="text"
-              placeholder="Add a tag..."
+              placeholder="Adicionar tag..."
               value={currentTag}
               onChange={(e) => setCurrentTag(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTag())}
@@ -195,7 +196,7 @@ const NewEntry = () => {
           whileTap={{ scale: 0.95 }}
           className="kawaii-button w-full mt-6"
         >
-          {isSubmitting ? 'Saving...' : 'Save Entry'}
+          {isSubmitting ? 'Salvando...' : 'Salvar Registro'}
         </motion.button>
       </form>
     </div>
