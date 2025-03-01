@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Analytics } from "@vercel/analytics/react"
 
 // Pages
 import Welcome from './pages/Welcome';
@@ -60,6 +61,7 @@ function App() {
               <Route path="/app" element={
                 <ProtectedRoute>
                   <Layout />
+                  <Analytics />
                 </ProtectedRoute>
               }>
                 <Route index element={<Home />} />

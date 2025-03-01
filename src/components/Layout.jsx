@@ -12,7 +12,6 @@ const Layout = () => {
         <Outlet />
       </div>
       <Navbar />
-      <Analytics />
     </div>
   );
 };
