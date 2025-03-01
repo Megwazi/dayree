@@ -18,7 +18,7 @@ const Login = () => {
     setError('');
     
     if (!email || !password) {
-      setError('Please fill in all fields');
+      setError('Preencha todos os campos!');
       return;
     }
     
@@ -30,7 +30,7 @@ const Login = () => {
         navigate('/app');
       }
     } catch (error) {
-      setError('Failed to log in. Please try again.');
+      setError('Falha ao logar, tente novamente!');
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -50,7 +50,7 @@ const Login = () => {
         navigate('/app');
       }
     } catch (error) {
-      setError('Failed to log in. Please try again.');
+      setError('Falha para logar, tente novamente!');
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -63,7 +63,7 @@ const Login = () => {
         <div className="mb-8">
           <Link to="/" className="inline-flex items-center text-kawaii-pink">
             <FaArrowLeft className="mr-2" />
-            Back
+            Voltar
           </Link>
         </div>
         
@@ -73,14 +73,14 @@ const Login = () => {
           transition={{ duration: 0.5 }}
           className="kawaii-card"
         >
-          <h1 className="text-3xl font-kawaii text-kawaii-pink mb-6">Welcome Back!</h1>
+          <h1 className="text-3xl font-kawaii text-kawaii-pink mb-6">Bem-vindo(a) de volta!</h1>
           
           <div className="flex justify-center mb-6">
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 2 }}
             >
-              <span className="text-5xl">🐰</span>
+              <span className="text-5xl">🎀</span>
             </motion.div>
           </div>
           
@@ -102,13 +102,13 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="kawaii-input pl-10 w-full"
-                  placeholder="your@email.com"
+                  placeholder="seu@email.com"
                 />
               </div>
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Senha</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FaLock className="text-gray-400" />
@@ -125,7 +125,7 @@ const Login = () => {
             
             <div className="flex justify-end">
               <button type="button" className="text-sm text-kawaii-pink">
-                Forgot Password?
+                Esqueceu a senha?
               </button>
             </div>
             
@@ -135,7 +135,7 @@ const Login = () => {
               className="kawaii-button w-full flex justify-center items-center"
             >
               {isLoading ? (
-                <span className="animate-pulse">Loading...</span>
+                <span className="animate-pulse">Carregando...</span>
               ) : (
                 'Login'
               )}
@@ -143,9 +143,9 @@ const Login = () => {
             
             <div className="text-center">
               <p className="text-sm text-gray-600">
-                Don't have an account?{' '}
+                Não possui uma conta?{' '}
                 <Link to="/register" className="text-kawaii-pink font-medium">
-                  Sign up
+                  Registrar
                 </Link>
               </p>
             </div>
@@ -156,7 +156,7 @@ const Login = () => {
               onClick={handleDemoLogin}
               className="w-full py-2 px-4 border border-kawaii-blue rounded-xl text-kawaii-blue bg-white hover:bg-kawaii-blue hover:text-white transition-colors duration-300"
             >
-              Try Demo Account
+              Entrar como convidado
             </button>
           </div>
         </motion.div>

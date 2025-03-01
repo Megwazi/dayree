@@ -29,12 +29,12 @@ const Welcome = () => {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <h1 className="text-4xl font-kawaii text-white mb-4">Kawaii Diary</h1>
+          <h1 className="text-4xl font-kawaii text-white mb-4 py-5">Dayree</h1>
           <motion.div 
             animate={{ y: [0, -20, 0] }}
             transition={{ repeat: Infinity, duration: 1.5 }}
           >
-            <span className="text-6xl">🐻</span>
+            <span className="text-6xl">🎀</span>
           </motion.div>
         </motion.div>
       </div>
@@ -49,8 +49,8 @@ const Welcome = () => {
         transition={{ duration: 0.5 }}
         className="text-center mb-12"
       >
-        <h1 className="text-4xl font-kawaii text-white mb-2 drop-shadow-md">Kawaii Diary</h1>
-        <p className="text-lg text-white">Your cute digital journal</p>
+        <h1 className="text-4xl font-kawaii text-white mb-2 drop-shadow-md">Dayree</h1>
+        <p className="text-lg text-white">Seu diário coquete pessoal</p>
       </motion.div>
       
       <motion.div
@@ -85,7 +85,7 @@ const Welcome = () => {
           </div>
           
           <p className="text-lg mb-8">
-            Capture your thoughts and moments in the cutest way possible!
+            Guarde seus pensamentos e memórias de um jeito especial!
           </p>
           
           <div className="space-y-4 w-full">
@@ -93,13 +93,13 @@ const Welcome = () => {
               Login
             </Link>
             <Link to="/register" className="block w-full text-center bg-white text-kawaii-pink font-rounded py-3 px-6 rounded-2xl shadow-kawaii border-2 border-kawaii-pink transition-all duration-300 hover:shadow-kawaii-hover hover:transform hover:scale-105">
-              Sign Up
+              Registrar
             </Link>
           </div>
         </div>
         
         <p className="text-center text-white text-sm">
-          By continuing, you agree to our Terms and Privacy Policy
+          Ao continuar, você concorda com nossos Termos de Serviço e Política de Privacidade
         </p>
       </motion.div>
     </div>

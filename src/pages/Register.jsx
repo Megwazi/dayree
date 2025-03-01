@@ -21,17 +21,17 @@ const Register = () => {
     
     // Validation
     if (!username || !email || !password || !confirmPassword) {
-      setError('Please fill in all fields');
+      setError('Preencha todos os campos!');
       return;
     }
     
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      setError('Senhas não coincidem!');
       return;
     }
     
     if (password.length < 6) {
-      setError('Password must be at least 6 characters');
+      setError('A senha deve ter ao menos 6 caracteres!');
       return;
     }
     
@@ -43,7 +43,7 @@ const Register = () => {
         navigate('/app');
       }
     } catch (error) {
-      setError('Failed to create an account. Please try again.');
+      setError('Falha ao criar uma conta, tente novamente!');
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -56,7 +56,7 @@ const Register = () => {
         <div className="mb-8">
           <Link to="/" className="inline-flex items-center text-kawaii-pink">
             <FaArrowLeft className="mr-2" />
-            Back
+            Voltar
           </Link>
         </div>
         
@@ -66,14 +66,14 @@ const Register = () => {
           transition={{ duration: 0.5 }}
           className="kawaii-card"
         >
-          <h1 className="text-3xl font-kawaii text-kawaii-pink mb-6">Join Kawaii Diary!</h1>
+          <h1 className="text-3xl font-kawaii text-kawaii-pink mb-6">Junte-se ao Dayree!</h1>
           
           <div className="flex justify-center mb-6">
             <motion.div
               animate={{ rotate: [0, 10, 0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 2 }}
             >
-              <span className="text-5xl">🐱</span>
+              <span className="text-5xl">🎀</span>
             </motion.div>
           </div>
           
@@ -85,7 +85,7 @@ const Register = () => {
           
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Nome de Usuário</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FaUser className="text-gray-400" />
@@ -95,7 +95,7 @@ const Register = () => {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className="kawaii-input pl-10 w-full"
-                  placeholder="Your username"
+                  placeholder="Seu nome de usuário"
                 />
               </div>
             </div>
@@ -111,13 +111,13 @@ const Register = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="kawaii-input pl-10 w-full"
-                  placeholder="your@email.com"
+                  placeholder="seu@email.com"
                 />
               </div>
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Senha</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FaLock className="text-gray-400" />
@@ -133,7 +133,7 @@ const Register = () => {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Confirmar Senha</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FaLock className="text-gray-400" />
@@ -154,15 +154,15 @@ const Register = () => {
               className="kawaii-button w-full flex justify-center items-center"
             >
               {isLoading ? (
-                <span className="animate-pulse">Creating Account...</span>
+                <span className="animate-pulse">Criando Conta...</span>
               ) : (
-                'Sign Up'
+                'Registrar-se'
               )}
             </button>
             
             <div className="text-center">
               <p className="text-sm text-gray-600">
-                Already have an account?{' '}
+                Já possui uma conta?{' '}
                 <Link to="/login" className="text-kawaii-pink font-medium">
                   Login
                 </Link>
