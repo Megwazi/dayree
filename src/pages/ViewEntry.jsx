@@ -48,12 +48,12 @@ const ViewEntry = () => {
   if (!entry) {
     return (
       <div className="p-4 text-center">
-        <p>Entry not found</p>
+        <p>Registro não encontrado</p>
         <button 
           onClick={() => navigate('/app')}
           className="kawaii-button mt-4"
         >
-          Go Back
+          Voltar
         </button>
       </div>
     );
@@ -93,7 +93,7 @@ const ViewEntry = () => {
         <h1 className="text-2xl font-semibold mb-2">{entry.title}</h1>
         
         <div className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'} mb-4`}>
-          {format(new Date(entry.createdAt), 'EEEE, MMMM do, yyyy')}
+          {format(new Date(entry.createdAt), "EEEE, d 'de' MMMM 'de' yyyy", { locale: ptBR})}
         </div>
         
         {entry.mood && (

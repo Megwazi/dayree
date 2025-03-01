@@ -16,7 +16,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-  @apply bg-[url('/bg-heart.svg')] bg-no-repeat bg-cover bg-center;
   color-scheme: light dark;
   color: #213547;
   background-color: #ffffff;
