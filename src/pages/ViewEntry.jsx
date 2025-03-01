@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import { FaArrowLeft, FaTrash, FaEdit } from 'react-icons/fa';
 import { useDiary } from '../context/DiaryContext';
 import { useTheme } from '../context/ThemeContext';
@@ -40,7 +41,7 @@ const ViewEntry = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <div className="animate-bounce text-5xl">🐻</div>
+        <div className="animate-bounce text-5xl">🎀</div>
       </div>
     );
   }
@@ -104,7 +105,7 @@ const ViewEntry = () => {
               {entry.mood === 'love' && '❤️'}
               {entry.mood === 'angry' && '😠'}
             </span>
-            <span className="text-sm capitalize">Feeling {entry.mood}</span>
+            <span className="text-sm capitalize">Sentindo {entry.mood}</span>
           </div>
         )}
         
@@ -133,21 +134,21 @@ const ViewEntry = () => {
             animate={{ scale: 1, opacity: 1 }}
             className="kawaii-card max-w-sm w-full"
           >
-            <h3 className="text-xl font-semibold mb-4">Delete Entry?</h3>
-            <p className="mb-6">Are you sure you want to delete this entry? This action cannot be undone.</p>
+            <h3 className="text-xl font-semibold mb-4">Apagar Registro?</h3>
+            <p className="mb-6">Você tem certeza que deseja apagar o registro? Essa ação não pode ser desfeita.</p>
             
             <div className="flex space-x-4">
               <button
                 onClick={() => setShowDeleteConfirm(false)}
                 className="flex-1 py-2 px-4 border border-gray-300 rounded-xl"
               >
-                Cancel
+                Cancelar
               </button>
               <button
                 onClick={handleDelete}
                 className="flex-1 py-2 px-4 bg-red-500 text-white rounded-xl"
               >
-                Delete
+                Apagar
               </button>
             </div>
           </motion.div>
