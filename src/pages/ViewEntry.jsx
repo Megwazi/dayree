@@ -100,10 +100,10 @@ const ViewEntry = () => {
         {entry.mood && (
           <div className="mb-4">
             <span className="text-2xl mr-2">
-              {entry.mood === 'happy' && '😊'}
-              {entry.mood === 'sad' && '😢'}
-              {entry.mood === 'love' && '❤️'}
-              {entry.mood === 'angry' && '😠'}
+              {entry.mood === 'feliz' && '😊'}
+              {entry.mood === 'triste' && '😢'}
+              {entry.mood === 'amor' && '❤️'}
+              {entry.mood === 'raiva' && '😠'}
             </span>
             <span className="text-sm capitalize">Sentindo {entry.mood}</span>
           </div>
