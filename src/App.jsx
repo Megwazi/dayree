@@ -39,9 +39,9 @@ function App() {
     return (
       <div className="flex items-center justify-center h-screen bg-pastel-pink">
         <div className="text-center">
-          <h1 className="text-3xl font-kawaii text-white mb-4">Kawaii Diary</h1>
+          <h1 className="text-6xl paws text-white mb-4">Dayree</h1>
           <div className="animate-bounce-slow">
-            <span className="text-5xl">🐻</span>
+            <span className="text-5xl">🎀</span>
           </div>
         </div>
       </div>

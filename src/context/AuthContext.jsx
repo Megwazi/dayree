@@ -49,11 +49,11 @@ export const AuthProvider = ({ children }) => {
       // Initialize empty diary entries
       await localforage.setItem('kawaii_diary_entries', []);
       
-      toast.success('Welcome to Kawaii Diary! 🎉');
+      toast.success('Bem-vindo(a) ao Dayree!');
       return true;
     } catch (error) {
       console.error('Registration error:', error);
-      toast.error('Registration failed. Please try again.');
+      toast.error('Falha ao registrar, tente novamente!');
       return false;
     }
   };
@@ -66,15 +66,15 @@ export const AuthProvider = ({ children }) => {
       
       if (user && user.email === email) {
         setCurrentUser(user);
-        toast.success('Welcome back! 🌸');
+        toast.success('Bem-vindo(a) de volta! 🌸');
         return true;
       } else {
-        toast.error('Invalid email or password');
+        toast.error('Email ou senha inválidos!');
         return false;
       }
     } catch (error) {
       console.error('Login error:', error);
-      toast.error('Login failed. Please try again.');
+      toast.error('Falha ao logar, tente novamente!');
       return false;
     }
   };
@@ -82,11 +82,11 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       setCurrentUser(null);
-      toast.info('You have been logged out');
+      toast.info('Você se desconectou');
       return true;
     } catch (error) {
       console.error('Logout error:', error);
-      toast.error('Logout failed. Please try again.');
+      toast.error('Erro ao desconectar, tente novamente!');
       return false;
     }
   };
@@ -103,11 +103,11 @@ export const AuthProvider = ({ children }) => {
       
       await localforage.setItem('kawaii_diary_user', updatedUser);
       setCurrentUser(updatedUser);
-      toast.success('Settings updated successfully! ✨');
+      toast.success('Configurações atualizadas! ✨');
       return true;
     } catch (error) {
       console.error('Update settings error:', error);
-      toast.error('Failed to update settings');
+      toast.error('Falha ao atualizar configurações!');
       return false;
     }
   };

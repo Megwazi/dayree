@@ -49,7 +49,7 @@ const Welcome = () => {
         transition={{ duration: 0.5 }}
         className="text-center mb-12"
       >
-        <h1 className="text-4xl font-kawaii text-white mb-2 drop-shadow-md">Dayree</h1>
+        <h1 className="text-8xl paws text-white mb-2 drop-shadow-md">Dayree</h1>
         <p className="text-lg text-white">Seu diário coquete pessoal</p>
       </motion.div>
       

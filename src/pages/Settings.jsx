@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaMoon, FaSun, FaSignOutAlt, FaDownload, FaLock, FaUnlock } from 'react-icons/fa';
+import { GiBowTieRibbon } from "react-icons/gi";
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { useDiary } from '../context/DiaryContext';
@@ -57,7 +58,11 @@ const Settings = () => {
   
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-kawaii text-kawaii-pink mb-6">Configurações</h1>
+      <h1 className="text-5xl brush-font text-kawaii-pink mb-6">
+        <GiBowTieRibbon className='inline-block mr-2'/> 
+        Configurações 
+        <GiBowTieRibbon className='inline-block ml-2'/>
+      </h1>
       
       <div className="space-y-6">
         <motion.div 
@@ -91,7 +96,7 @@ const Settings = () => {
           
           <div className="mb-6">
             <div className="flex justify-between items-center">
-              <span>Modo Escuro</span>
+              <span>Modo Escuro/Claro</span>
               <button
                 onClick={toggleTheme}
                 className={`p-2 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-pastel-lilac'}`}

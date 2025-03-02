@@ -11,6 +11,20 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Paws";
+  src: url("/fonts/KittenPaws-Regular.ttf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AlexBrush";
+  src: url("/fonts/AlexBrush-Regular.ttf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+
 :root {
   font-family: "Varela Round", system-ui, sans-serif;
   line-height: 1.5;
@@ -64,6 +78,14 @@ body {
 }
 .grape-font {
   font-family: "Grape-Soda";
+}
+
+.paws {
+  font-family: "Paws";
+}
+
+.brush-font {
+  font-family: "AlexBrush";
 }
 
 /* Dark mode styles */

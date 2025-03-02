@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children }) => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <div className="animate-bounce text-5xl">🐻</div>
+        <div className="animate-bounce text-5xl">🎀</div>
       </div>
     );
   }
