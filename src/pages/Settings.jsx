@@ -59,9 +59,9 @@ const Settings = () => {
   return (
     <div className="p-4">
       <h1 className="text-5xl brush-font text-kawaii-pink mb-6">
-        <GiBowTieRibbon className='inline-block mr-2'/> 
+        <GiBowTieRibbon className='inline-block mr-2 w-6 h-6 rotate-12'/> 
         Configurações 
-        <GiBowTieRibbon className='inline-block ml-2'/>
+        <GiBowTieRibbon className='inline-block ml-2 w-6 h-6 -rotate-12'/>
       </h1>
       
       <div className="space-y-6">
@@ -73,18 +73,22 @@ const Settings = () => {
           <h2 className="text-xl font-semibold mb-4">Conta</h2>
           
           <div className="mb-4">
-            <p className="text-sm text-gray-600 dark:text-gray-400">Sessão iniciada como</p>
-            <p className="font-medium">{currentUser?.username}</p>
-            <p className="text-sm text-gray-500">{currentUser?.email}</p>
+            <div className='pb-4'>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Sessão iniciada como</p>
+            </div>
+            <p className="font-medium text-kawaii-pink">{currentUser?.username}</p>
+            <p className="text-sm italic text-gray-500">{currentUser?.email}</p>
           </div>
           
-          <button
-            onClick={handleLogout}
-            className="flex items-center text-red-500 font-medium"
-          >
-            <FaSignOutAlt className="mr-2" />
-            Sair
-          </button>
+          <div className='flex justify-end'>
+            <button
+              onClick={handleLogout}
+              className="flex items-center justify-items-end text-red-500 font-medium"
+            >
+              <FaSignOutAlt className="mr-2" />
+              Sair
+            </button>
+          </div>
         </motion.div>
         
         <motion.div 
@@ -107,7 +111,7 @@ const Settings = () => {
           </div>
           
           <div className="mb-6">
-            <label className="block text-sm font-medium mb-2">Cor do Tema <FaLock/></label>
+            <label className="flex text-sm font-medium mb-2">Cor do Tema <FaLock className='pl-1'/></label>
             <div className="flex space-x-2">
               {colorOptions.map((color) => (
                 <button 
@@ -125,7 +129,7 @@ const Settings = () => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium mb-2">Estilo de Fonte<FaLock/></label>
+            <label className="flex text-sm font-medium mb-2">Estilo de Fonte <FaLock className='pl-1'/></label>
             <div className="flex space-x-2">
               {fontOptions.map((font) => (
                 <button
@@ -153,7 +157,7 @@ const Settings = () => {
           
           <div className="flex justify-between items-center mb-6">
             <div>
-              <p className="font-medium">Modo Privado</p>
+              <p className="font-medium text-left">Modo Privado</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Necessário autenticação para ver registros
               </p>
@@ -174,13 +178,15 @@ const Settings = () => {
         >
           <h2 className="text-xl font-semibold mb-4">Dados</h2>
           
-          <button
-            onClick={handleExport}
-            className="flex items-center text-kawaii-blue font-medium"
-          >
-            <FaDownload className="mr-2" />
-            Exportar dados
-          </button>
+          <div className='flex justify-center'>
+            <button
+              onClick={handleExport}
+              className="flex items-center text-kawaii-blue font-medium"
+            >
+              <FaDownload className="mr-2" />
+              Exportar dados
+            </button>
+          </div>
         </motion.div>
         
         <motion.button
