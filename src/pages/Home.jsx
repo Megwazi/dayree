@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { FaSearch, FaCalendarAlt, FaHeart, FaSadTear } from 'react-icons/fa';
+import { GiBowTieRibbon } from "react-icons/gi";
 import { useDiary } from '../context/DiaryContext';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
@@ -29,7 +30,7 @@ const Home = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <div className="animate-bounce text-5xl">🐻</div>
+        <div className="animate-bounce text-5xl">🎀</div>
       </div>
     );
   }
@@ -37,10 +38,12 @@ const Home = () => {
   return (
     <div className="p-4">
       <div className="mb-6">
-        <h1 className="text-5xl grape-font text-kawaii-pink">
+        <h1 className="text-5xl brush-font text-kawaii-pink">
+        <GiBowTieRibbon className='inline-block mr-2 w-6 h-6 rotate-12'/>
           Diário de {currentUser?.username}
+        <GiBowTieRibbon className='inline-block ml-2 w-6 h-6 -rotate-12'/>
         </h1>
-        <p className={`text-base grape-font ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+        <p className={`text-base brush-font ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
           {format(new Date(), "EEEE, d 'de' MMMM 'de' yyyy", { locale: ptBR})}
         </p>
       </div>
@@ -66,7 +69,7 @@ const Home = () => {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`kawaii-card ${entry.mood === 'happy' ? 'border-l-4 border-pastel-yellow space-y-4' : 
+                className={`kawaii-card mb-3 ${entry.mood === 'happy' ? 'border-l-4 border-pastel-yellow space-y-4' : 
                   entry.mood === 'sad' ? 'border-l-4 border-pastel-blue' : 
                   entry.mood === 'love' ? 'border-l-4 border-kawaii-pink' : ''}`}
               >
@@ -84,11 +87,11 @@ const Home = () => {
                 
                 <div className="flex items-center">
                   <div className="mr-2">
-                    {entry.mood === 'happy' && <span className="text-xl">😊</span>}
-                    {entry.mood === 'sad' && <span className="text-xl">😢</span>}
-                    {entry.mood === 'love' && <span className="text-xl">❤️</span>}
-                    {entry.mood === 'angry' && <span className="text-xl">😠</span>}
-                    {!entry.mood && <span className="text-xl">📝</span>}
+                    {entry.mood === 'happy' && <span className="text-sm p-2 rounded-full bg-orange-200">😊 Feliz</span>}
+                    {entry.mood === 'sad' && <span className="text-sm p-2 rounded-full bg-pastel-blue">😢 Triste</span>}
+                    {entry.mood === 'love' && <span className="text-sm p-2 rounded-full bg-pink-300">❤️ Amor</span>}
+                    {entry.mood === 'angry' && <span className="text-sm p-2 rounded-full bg-red-300">😠 Raiva</span>}
+                    {!entry.mood && <span className="text-sm p-2 rounded-full bg-teal-100">📝 Sem emoção</span>}
                   </div>
                   
                   {entry.tags && entry.tags.length > 0 && (
@@ -96,7 +99,7 @@ const Home = () => {
                       {entry.tags.map((tag, index) => (
                         <span 
                           key={index}
-                          className="text-xs px-2 py-1 rounded-full bg-pastel-lilac text-gray-700"
+                          className="text-sm p-2 rounded-full bg-pastel-lilac text-gray-700"
                         >
                           {tag}
                         </span>
