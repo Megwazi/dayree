@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { FaArrowLeft, FaTimes, FaPlus } from 'react-icons/fa';
+import { GiBowTieRibbon } from "react-icons/gi";
+
 import EmojiPicker from 'emoji-picker-react';
 import { useDiary } from '../context/DiaryContext';
 import { useTheme } from '../context/ThemeContext';
@@ -82,7 +84,11 @@ const NewEntry = () => {
         >
           <FaArrowLeft className="text-xl" />
         </button>
-        <h1 className="text-2xl font-kawaii text-kawaii-pink">Novo Registro</h1>
+        <h1 className="text-5xl brush-font text-kawaii-pink">
+        <GiBowTieRibbon className='inline-block mr-2 w-6 h-6 rotate-12'/>
+          Novo Registro
+        <GiBowTieRibbon className='inline-block ml-2 w-6 h-6 -rotate-12'/>
+        </h1>
         <div className="w-6"></div> {/* Empty div for flex spacing */}
       </div>
       
@@ -99,7 +105,7 @@ const NewEntry = () => {
         </div>
         
         <div className="mb-4">
-          <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+          <p className={`text-2xl brush-font ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
             {format(new Date(), "EEEE, d 'de' MMMM 'de' yyyy", {locale: ptBR})}
           </p>
         </div>
@@ -139,7 +145,7 @@ const NewEntry = () => {
                 className={`p-3 rounded-full transition-all ${
                   mood === m.name 
                     ? `bg-${m.color} scale-110 shadow-lg` 
-                    : 'bg-gray-100 dark:bg-gray-700'
+                    : 'bg-gray-100 dark:bg-gray-100'
                 }`}
               >
                 <span className="text-2xl">{m.emoji}</span>

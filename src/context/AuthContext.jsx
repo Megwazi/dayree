@@ -49,11 +49,15 @@ export const AuthProvider = ({ children }) => {
       // Initialize empty diary entries
       await localforage.setItem('kawaii_diary_entries', []);
       
-      toast.success('Bem-vindo(a) ao Dayree!');
+      toast.success('Bem-vindo(a) ao Dayree!', {
+        position: 'top-center',
+      });
       return true;
     } catch (error) {
       console.error('Registration error:', error);
-      toast.error('Falha ao registrar, tente novamente!');
+      toast.error('Falha ao registrar, tente novamente!', {
+        position: 'top-right',
+      });
       return false;
     }
   };
@@ -66,15 +70,21 @@ export const AuthProvider = ({ children }) => {
       
       if (user && user.email === email) {
         setCurrentUser(user);
-        toast.success('Bem-vindo(a) de volta! 🌸');
+        toast.success('Bem-vindo(a) de volta! 🌸', {
+          position: 'top-right',
+        });
         return true;
       } else {
-        toast.error('Email ou senha inválidos!');
+        toast.error('Email ou senha inválidos!', {
+          position: 'top-right',
+        });
         return false;
       }
     } catch (error) {
       console.error('Login error:', error);
-      toast.error('Falha ao logar, tente novamente!');
+      toast.error('Falha ao logar, tente novamente!', {
+        position: 'top-right',
+      });
       return false;
     }
   };
@@ -82,11 +92,15 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       setCurrentUser(null);
-      toast.info('Você se desconectou');
+      toast.info('Você se desconectou', {
+        position: 'top-right',
+      });
       return true;
     } catch (error) {
       console.error('Logout error:', error);
-      toast.error('Erro ao desconectar, tente novamente!');
+      toast.error('Erro ao desconectar, tente novamente!', {
+        position: 'top-right',
+      });
       return false;
     }
   };
@@ -103,11 +117,15 @@ export const AuthProvider = ({ children }) => {
       
       await localforage.setItem('kawaii_diary_user', updatedUser);
       setCurrentUser(updatedUser);
-      toast.success('Configurações atualizadas! ✨');
+      toast.success('Configurações atualizadas! ✨', {
+        position: 'top-right',
+      });
       return true;
     } catch (error) {
       console.error('Update settings error:', error);
-      toast.error('Falha ao atualizar configurações!');
+      toast.error('Falha ao atualizar configurações!', {
+        position: 'top-right',
+      });
       return false;
     }
   };

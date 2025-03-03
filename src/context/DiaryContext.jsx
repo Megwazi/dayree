@@ -21,7 +21,9 @@ export const DiaryProvider = ({ children }) => {
           setEntries(savedEntries);
         } catch (error) {
           console.error('Erro ao carregar registros:', error);
-          toast.error('Falha ao carregar registros!');
+          toast.error('Falha ao carregar registros!', {
+            position: 'top-right',
+          });
         } finally {
           setLoading(false);
         }
@@ -47,11 +49,15 @@ export const DiaryProvider = ({ children }) => {
       await localforage.setItem('kawaii_diary_entries', updatedEntries);
       setEntries(updatedEntries);
       
-      toast.success('Registro salvo com sucesso! 📝');
+      toast.success('Registro salvo com sucesso! 📝', {
+        position: 'top-right',
+      });
       return newEntry.id;
     } catch (error) {
       console.error('Erro ao adicionar registro:', error);
-      toast.error('Falha ao salvar o registro!');
+      toast.error('Falha ao salvar o registro!', {
+        position: 'top-right',
+      });
       return null;
     }
   };
@@ -61,7 +67,9 @@ export const DiaryProvider = ({ children }) => {
       const entryIndex = entries.findIndex(entry => entry.id === id);
       
       if (entryIndex === -1) {
-        toast.error('Registro não encontrado');
+        toast.error('Registro não encontrado', {
+          position: 'top-right',
+        });
         return false;
       }
       
@@ -77,11 +85,15 @@ export const DiaryProvider = ({ children }) => {
       await localforage.setItem('kawaii_diary_entries', updatedEntries);
       setEntries(updatedEntries);
       
-      toast.success('Registro atualizado com sucesso! ✨');
+      toast.success('Registro atualizado com sucesso! ✨', {
+        position: 'top-right',
+      });
       return true;
     } catch (error) {
       console.error('Erro ao atualizar registro:', error);
-      toast.error('Falha ao atualizar registro!');
+      toast.error('Falha ao atualizar registro!', {
+        position: 'top-right',
+      });
       return false;
     }
   };
@@ -92,11 +104,15 @@ export const DiaryProvider = ({ children }) => {
       await localforage.setItem('kawaii_diary_entries', updatedEntries);
       setEntries(updatedEntries);
       
-      toast.success('Registro deletado com sucesso!');
+      toast.success('Registro deletado com sucesso!', {
+        position: 'top-right',
+      });
       return true;
     } catch (error) {
       console.error('Erro ao deletar registro:', error);
-      toast.error('Falha ao deleter registro!');
+      toast.error('Falha ao deleter registro!', {
+        position: 'top-right',
+      });
       return false;
     }
   };
@@ -123,11 +139,15 @@ export const DiaryProvider = ({ children }) => {
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
       
-      toast.success('Diário atualizado com sucesso! 📁');
+      toast.success('Diário atualizado com sucesso! 📁', {
+        position: 'top-right',
+      });
       return true;
     } catch (error) {
       console.error('Erro ao exportar registro:', error);
-      toast.error('Falha ao exportar registro!');
+      toast.error('Falha ao exportar registro!', {
+        position: 'top-right',
+      });
       return false;
     }
   };

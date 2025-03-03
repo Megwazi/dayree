@@ -123,7 +123,8 @@ const Settings = () => {
                   style={{ backgroundColor: color.value === 'kawaii-pink' ? '#FF9EB5' : 
                                           color.value === 'kawaii-blue' ? '#99CCFF' : 
                                           color.value === 'kawaii-purple' ? '#D8B5FF' : '' }}
-                />
+                            
+                >aa</button>
               ))}
             </div>
           </div>
