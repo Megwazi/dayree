@@ -5,17 +5,34 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { FaArrowLeft, FaTimes, FaPlus } from 'react-icons/fa';
 import { GiBowTieRibbon } from "react-icons/gi";
-
 import EmojiPicker from 'emoji-picker-react';
 import { useDiary } from '../context/DiaryContext';
 import { useTheme } from '../context/ThemeContext';
 
 const moods = [
-  { name: 'feliz', emoji: '😊', color: 'pastel-yellow' },
-  { name: 'triste', emoji: '😢', color: 'pastel-blue' },
-  { name: 'amor', emoji: '❤️', color: 'kawaii-pink' },
-  { name: 'raiva', emoji: '😠', color: 'pastel-pink' }
+  { name: 'Nenhuma Emoção', emoji: '😊', color: 'pastel-yellow' },
+  { name: 'Aborrecimento', emoji: '😊', color: 'pastel-yellow' },
+  { name: 'Alegria', emoji: '😢', color: 'pastel-blue' },
+  { name: 'Alívio', emoji: '❤️', color: 'kawaii-pink' },
+  { name: 'Ansiedade', emoji: '😊', color: 'pastel-yellow' },
+  { name: 'Calma', emoji: '😢', color: 'pastel-blue' },
+  { name: 'Confiança', emoji: '❤️', color: 'kawaii-pink' },
+  { name: 'Constrangimento', emoji: '😠', color: 'pastel-pink' },
+  { name: 'Coragem', emoji: '😢', color: 'pastel-blue' },
+  { name: 'Culpa', emoji: '❤️', color: 'kawaii-pink' },
+  { name: 'Decepção', emoji: '😠', color: 'pastel-pink' },
+  { name: 'Desânimo', emoji: '😊', color: 'pastel-yellow' },
+  { name: 'Desespero', emoji: '😢', color: 'pastel-blue' },
+  { name: 'Desgosto', emoji: '❤️', color: 'kawaii-pink' },
+  { name: 'Estresse', emoji: '😊', color: 'pastel-yellow' },
+
 ];
+
+const moodColors = {
+  'pastel-yellow': 'bg-pastel-yellow',
+  'pastel-blue': 'bg-pastel-blue',
+  'kawaii-pink': 'bg-kawaii-pink',
+};
 
 const NewEntry = () => {
   const navigate = useNavigate();
@@ -135,22 +152,17 @@ const NewEntry = () => {
         </div>
         
         <div>
-          <label className="block text-sm font-medium mb-2">Como está se sentindo?</label>
-          <div className="flex justify-between">
-            {moods.map((m) => (
-              <button
-                key={m.name}
-                type="button"
-                onClick={() => setMood(m.name)}
-                className={`p-3 rounded-full transition-all ${
-                  mood === m.name 
-                    ? `bg-${m.color} scale-110 shadow-lg` 
-                    : 'bg-gray-100 dark:bg-gray-100'
-                }`}
-              >
-                <span className="text-2xl">{m.emoji}</span>
-              </button>
-            ))}
+          <label className="block text-sm font-medium mb-2">Qual opção melhor se encaixa com o sentimento?</label>
+          <div className="flex justify-center">
+            <select 
+              className={"w-full h-10 flex-grow transition-all kawaii-input"}
+            >
+              {moods.map((m) => (
+                <option key={m.name} value={m.name} className="text-2xl text-left ">
+                  {m.emoji} {m.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         

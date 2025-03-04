@@ -139,7 +139,7 @@ const Settings = () => {
                   className={`px-4 py-2 rounded-xl ${
                     fontFamily === font.value 
                       ? 'bg-kawaii-pink text-white' 
-                      : 'bg-gray-100 dark:bg-gray-700'
+                      : 'bg-gray-100 dark:bg-gray-100'
                   } ${font.value === 'kawaii' ? 'font-kawaii' : 'font-rounded'}`}
                 >
                   Aa
@@ -165,7 +165,7 @@ const Settings = () => {
             </div>
             <button
               onClick={togglePrivateMode}
-              className={`p-2 rounded-full ${isPrivateMode ? 'bg-kawaii-pink' : 'bg-gray-200 dark:bg-gray-700'}`}
+              className={`p-2 rounded-full ${isPrivateMode ? 'bg-kawaii-pink' : 'bg-gray-200 dark:bg-gray-200'}`}
             >
               {isPrivateMode ? <FaLock className="text-white" /> : <FaUnlock className="text-gray-500" />}
             </button>
