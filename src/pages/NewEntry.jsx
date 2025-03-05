@@ -13,7 +13,7 @@ const moods = [
   { name: 'Nenhuma Emoção', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/2753.png', color: 'pastel-yellow' },
   { name: 'Aborrecimento', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f613.png', color: 'pastel-yellow' },
   { name: 'Alegria', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f642.png', color: 'pastel-blue' },
-  { name: 'Alívio', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f62e-200d-1f4a8.png	', color: 'kawaii-pink' },
+  { name: 'Alívio', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f62e-200d-1f4a8.png', color: 'kawaii-pink' },
   { name: 'Amor', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/2764-fe0f.png', color: 'pastel-yellow' },
   { name: 'Ansiedade', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1fae3.png', color: 'pastel-yellow' },
   { name: 'Calma', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f60c.png', color: 'pastel-blue' },
