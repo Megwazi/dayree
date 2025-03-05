@@ -87,7 +87,7 @@ const Home = () => {
                 
                 <div className="flex items-center">
                   <div className="mr-2 whitespace-nowrap">
-                    {entry.mood === 'feliz' && <span className="text-sm p-2 rounded-full bg-orange-200">😊 Feliz</span>}
+                    {entry.mood === 'Aborrecimento' && <span className="text-sm p-2 rounded-full bg-orange-200">😊 Feliz</span>}
                     {entry.mood === 'triste' && <span className="text-sm p-2 rounded-full bg-pastel-blue">😢 Triste</span>}
                     {entry.mood === 'amor' && <span className="text-sm p-2 rounded-full bg-pink-300">❤️ Amor</span>}
                     {entry.mood === 'raiva' && <span className="text-sm p-2 rounded-full bg-red-300">😠 Raiva</span>}

@@ -10,22 +10,33 @@ import { useDiary } from '../context/DiaryContext';
 import { useTheme } from '../context/ThemeContext';
 
 const moods = [
-  { name: 'Nenhuma Emoção', emoji: '😊', color: 'pastel-yellow' },
-  { name: 'Aborrecimento', emoji: '😊', color: 'pastel-yellow' },
-  { name: 'Alegria', emoji: '😢', color: 'pastel-blue' },
-  { name: 'Alívio', emoji: '❤️', color: 'kawaii-pink' },
-  { name: 'Ansiedade', emoji: '😊', color: 'pastel-yellow' },
-  { name: 'Calma', emoji: '😢', color: 'pastel-blue' },
-  { name: 'Confiança', emoji: '❤️', color: 'kawaii-pink' },
-  { name: 'Constrangimento', emoji: '😠', color: 'pastel-pink' },
-  { name: 'Coragem', emoji: '😢', color: 'pastel-blue' },
-  { name: 'Culpa', emoji: '❤️', color: 'kawaii-pink' },
-  { name: 'Decepção', emoji: '😠', color: 'pastel-pink' },
-  { name: 'Desânimo', emoji: '😊', color: 'pastel-yellow' },
-  { name: 'Desespero', emoji: '😢', color: 'pastel-blue' },
-  { name: 'Desgosto', emoji: '❤️', color: 'kawaii-pink' },
-  { name: 'Estresse', emoji: '😊', color: 'pastel-yellow' },
-
+  { name: 'Nenhuma Emoção', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/2753.png', color: 'pastel-yellow' },
+  { name: 'Aborrecimento', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f613.png', color: 'pastel-yellow' },
+  { name: 'Alegria', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f642.png', color: 'pastel-blue' },
+  { name: 'Alívio', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f62e-200d-1f4a8.png	', color: 'kawaii-pink' },
+  { name: 'Amor', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/2764-fe0f.png', color: 'pastel-yellow' },
+  { name: 'Ansiedade', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1fae3.png', color: 'pastel-yellow' },
+  { name: 'Calma', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f60c.png', color: 'pastel-blue' },
+  { name: 'Confiança', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f60e.png', color: 'kawaii-pink' },
+  { name: 'Constrangimento', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1fae5.png', color: 'pastel-pink' },
+  { name: 'Coragem', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f60f.png', color: 'pastel-blue' },
+  { name: 'Culpa', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f615.png', color: 'kawaii-pink' },
+  { name: 'Decepção', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1fae0.png', color: 'pastel-pink' },
+  { name: 'Desespero', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f628.png', color: 'pastel-blue' },
+  { name: 'Estresse', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f912.png', color: 'pastel-yellow' },
+  { name: 'Felicidade', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f601.png', color: 'pastel-yellow' },
+  { name: 'Frustração', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f62b.png', color: 'pastel-yellow' },
+  { name: 'Inveja', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f644.png', color: 'pastel-yellow' },
+  { name: 'Medo', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f630.png', color: 'pastel-yellow' },
+  { name: 'Orgulho', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f929.png', color: 'pastel-yellow' },
+  { name: 'Paixão', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f60d.png', color: 'pastel-yellow' },
+  { name: 'Raiva', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f621.png', color: 'pastel-yellow' },
+  { name: 'Satisfação', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f973.png', color: 'pastel-yellow' },
+  { name: 'Sobrecarga', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f635-200d-1f4ab.png', color: 'pastel-yellow' },
+  { name: 'Solidão', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f636.png', color: 'pastel-yellow' },
+  { name: 'Surpresa', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f631.png', color: 'pastel-yellow' },
+  { name: 'Tristeza', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f62d.png', color: 'pastel-yellow' },
+  { name: 'Vergonha', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f636-200d-1f32b-fe0f.png', color: 'pastel-yellow' },
 ];
 
 const moodColors = {
@@ -152,14 +163,29 @@ const NewEntry = () => {
         </div>
         
         <div>
-          <label className="block text-sm font-medium mb-2">Qual opção melhor se encaixa com o sentimento?</label>
+          <label className="block text-sm font-medium mb-2">
+            Qual opção melhor se encaixa com o sentimento?
+          </label>
+          <div className="flex justify-center mb-4">
+            {mood ? (
+              <img 
+                src={moods.find(m => m.name === mood)?.emoji} 
+                alt={mood} 
+                className="w-16 h-16"
+              />
+            ) : (
+              <span className="text-gray-400 text-4xl">❓</span>
+            )}
+          </div>
           <div className="flex justify-center">
-            <select 
-              className={"w-full h-10 flex-grow transition-all kawaii-input"}
+            <select
+              value={mood}
+              onChange={(e) => setMood(e.target.value)}
+              className="w-full h-10 flex-grow transition-all kawaii-input"
             >
               {moods.map((m) => (
-                <option key={m.name} value={m.name} className="text-2xl text-left ">
-                  {m.emoji} {m.name}
+                <option key={m.name} value={m.name} className="text-2xl text-center">
+                  {m.name}
                 </option>
               ))}
             </select>
