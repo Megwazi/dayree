@@ -87,11 +87,33 @@ const Home = () => {
                 
                 <div className="flex items-center">
                   <div className="mr-2 whitespace-nowrap">
-                    {entry.mood === 'Aborrecimento' && <span className="text-sm p-2 rounded-full bg-orange-200">😊 Feliz</span>}
-                    {entry.mood === 'triste' && <span className="text-sm p-2 rounded-full bg-pastel-blue">😢 Triste</span>}
-                    {entry.mood === 'amor' && <span className="text-sm p-2 rounded-full bg-pink-300">❤️ Amor</span>}
-                    {entry.mood === 'raiva' && <span className="text-sm p-2 rounded-full bg-red-300">😠 Raiva</span>}
-                    {!entry.mood && <span className="text-sm p-2 rounded-full bg-teal-100">📝 Sem emoção</span>}
+                    {entry.mood === 'Nenhuma Emoção' && <span className="text-sm p-2 rounded-full bg-slate-300"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/2753.png'/>Nenhuma Emoção</span>}
+                    {entry.mood === 'Aborrecimento' && <span className="text-sm p-2 rounded-full bg-blue-200"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f613.png'/>Aborrecimento</span>}
+                    {entry.mood === 'Alegria' && <span className="text-sm p-2 rounded-full bg-orange-200"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f642.png'/>Alegria</span>}
+                    {entry.mood === 'Alívio' && <span className="text-sm p-2 rounded-full bg-orange-100"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f62e-200d-1f4a8.png'/>Alívio</span>}
+                    {entry.mood === 'Amor' && <span className="text-sm p-2 rounded-full bg-red-200"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/2764-fe0f.png'/>Amor</span>}
+                    {entry.mood === 'Ansiedade' && <span className="text-sm p-2 rounded-full bg-indigo-200"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1fae3.png'/>Ansiedade</span>}
+                    {entry.mood === 'Calma' && <span className="text-sm p-2 rounded-full bg-yellow-100"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f60c.png'/>Calma</span>}
+                    {entry.mood === 'Confiança' && <span className="text-sm p-2 rounded-full bg-orange-300"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f60e.png'/>Confiança</span>}
+                    {entry.mood === 'Constrangimento' && <span className="text-sm p-2 rounded-full bg-slate-200"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1fae5.png'/>Constrangimento</span>}
+                    {entry.mood === 'Coragem' && <span className="text-sm p-2 rounded-full bg-yellow-300"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f60f.png'/>Coragem</span>}
+                    {entry.mood === 'Culpa' && <span className="text-sm p-2 rounded-full bg-stone-400"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f615.png'/>Culpa</span>}
+                    {entry.mood === 'Decepção' && <span className="text-sm p-2 rounded-full bg-indigo-300"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1fae0.png'/>Decepção</span>}
+                    {entry.mood === 'Desespero' && <span className="text-sm p-2 rounded-full bg-sky-200"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f628.png'/>Desespero</span>}
+                    {entry.mood === 'Estresse' && <span className="text-sm p-2 rounded-full bg-red-300"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f912.png'/>Estresse</span>}
+                    {entry.mood === 'Felicidade' && <span className="text-sm p-2 rounded-full bg-lime-200"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f601.png'/>Felicidade</span>}
+                    {entry.mood === 'Frustração' && <span className="text-sm p-2 rounded-full bg-amber-300"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f62b.png'/>Frustração</span>}
+                    {entry.mood === 'Inveja' && <span className="text-sm p-2 rounded-full bg-fuchsia-200"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f644.png'/>Inveja</span>}
+                    {entry.mood === 'Medo' && <span className="text-sm p-2 rounded-full bg-indigo-300"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f630.png'/>Medo</span>}
+                    {entry.mood === 'Orgulho' && <span className="text-sm p-2 rounded-full bg-green-300"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f929.png'/>Orgulho</span>}
+                    {entry.mood === 'Paixão' && <span className="text-sm p-2 rounded-full bg-pink-200"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f60d.png'/>Paixão</span>}
+                    {entry.mood === 'Raiva' && <span className="text-sm p-2 rounded-full bg-red-400"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f621.png'/>Raiva</span>}
+                    {entry.mood === 'Satisfação' && <span className="text-sm p-2 rounded-full bg-lime-300"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f973.png'/>Satisfação</span>}
+                    {entry.mood === 'Sobrecarga' && <span className="text-sm p-2 rounded-full bg-rose-600"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f635-200d-1f4ab.png'/>Sobrecarga</span>}
+                    {entry.mood === 'Solidão' && <span className="text-sm p-2 rounded-full bg-violet-400"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f636.png'/>Solidão</span>}
+                    {entry.mood === 'Surpresa' && <span className="text-sm p-2 rounded-full bg-green-500"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f631.png'/>Surpresa</span>}
+                    {entry.mood === 'Tristeza' && <span className="text-sm p-2 rounded-full bg-sky-600"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f62d.png'/>Tristeza</span>}
+                    {entry.mood === 'Vergonha' && <span className="text-sm p-2 rounded-full bg-stone-400"><img className='emoji-area-home' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f636-200d-1f32b-fe0f.png'/>Vergonha</span>}
                   </div>
                   
                   {entry.tags && entry.tags.length > 0 && (

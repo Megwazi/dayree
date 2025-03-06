@@ -88,6 +88,23 @@ body {
   font-family: "AlexBrush";
 }
 
+.emoji-area {
+  height: 1.75rem;
+  padding-bottom: 0.01rem;
+  display: inline;
+  justify-content: center;
+  align-items: center;
+}
+
+.emoji-area-home {
+  height: 1.5rem;
+  padding-bottom: 0.15rem;
+  margin-right: 0.25rem;
+  display: inline;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Dark mode styles */
 .dark {
   color-scheme: dark;
