@@ -31,7 +31,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #ffffff;
+  color: #213547;
   background-color: #ffffff;
 
   font-synthesis: none;
@@ -69,7 +69,7 @@ body {
   }
 
   .kawaii-card {
-    @apply bg-white rounded-2xl shadow-kawaii p-6 transition-all duration-300 hover:shadow-kawaii-hover;
+    @apply bg-opacity-80 bg-white rounded-2xl shadow-kawaii p-6 transition-all duration-300 hover:shadow-kawaii-hover;
   }
 
   .kawaii-container {
@@ -77,11 +77,16 @@ body {
   }
 }
 
+.bg-home {
+  background-color: #ffe7eb;
+}
+
 .bg-img {
   background-image: url("../public/bg-heart.svg");
   background-size: cover;
   background-repeat: none;
   background-color: #ffe7eb;
+  transition: 3s;
 }
 
 .grape-font {
@@ -118,9 +123,9 @@ body {
   color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-} */
+}
 
-/* .dark .kawaii-card {
+.dark .kawaii-card {
   @apply bg-gray-800;
 }
 

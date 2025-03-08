@@ -38,12 +38,22 @@ const Home = () => {
   return (
     <div className="p-4">
       <div className="mb-6">
-        <h1 className="text-5xl brush-font text-kawaii-pink">
-        <GiBowTieRibbon className='inline-block mr-2 w-6 h-6 rotate-12'/>
-          Diário de {currentUser?.username}
-        <GiBowTieRibbon className='inline-block ml-2 w-6 h-6 -rotate-12'/>
-        </h1>
-        <p className={`text-base brush-font ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+        {currentUser?.username === 'Isabelle' && 
+          <h1 className="text-5xl brush-font text-kawaii-pink">
+          <GiBowTieRibbon className='inline-block mr-2 w-6 h-6 rotate-12'/>
+            Diário da {currentUser?.username}
+          <GiBowTieRibbon className='inline-block ml-2 w-6 h-6 -rotate-12'/>
+          </h1>  
+        }
+
+        {currentUser?.username !== 'Isabelle' && 
+          <h1 className="text-5xl brush-font text-kawaii-pink">
+          <GiBowTieRibbon className='inline-block mr-2 w-6 h-6 rotate-12'/>
+            Diário de {currentUser?.username}
+          <GiBowTieRibbon className='inline-block ml-2 w-6 h-6 -rotate-12'/>
+          </h1>  
+        }
+        <p className={`text-base brush-font capitalize ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
           {format(new Date(), "EEEE, d 'de' MMMM 'de' yyyy", { locale: ptBR})}
         </p>
       </div>

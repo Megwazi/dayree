@@ -58,7 +58,7 @@ const Login = () => {
   };
   
   return (
-    <div className="min-h-screen bg-pastel-lilac p-6">
+    <div className="min-h-screen bg-img p-6">
       <div className="max-w-md mx-auto">
         <div className="mb-3 text-left">
           <Link to="/" className="inline-flex items-center text-kawaii-pink">

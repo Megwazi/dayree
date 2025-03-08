@@ -39,12 +39,6 @@ const moods = [
   { name: 'Vergonha', emoji: 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f636-200d-1f32b-fe0f.png', color: 'pastel-yellow' },
 ];
 
-const moodColors = {
-  'pastel-yellow': 'bg-pastel-yellow',
-  'pastel-blue': 'bg-pastel-blue',
-  'kawaii-pink': 'bg-kawaii-pink',
-};
-
 const NewEntry = () => {
   const navigate = useNavigate();
   const { addEntry } = useDiary();
@@ -133,7 +127,7 @@ const NewEntry = () => {
         </div>
         
         <div className="mb-4">
-          <p className={`text-2xl brush-font ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+          <p className={`text-2xl brush-font capitalize ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
             {format(new Date(), "EEEE, d 'de' MMMM 'de' yyyy", {locale: ptBR})}
           </p>
         </div>
