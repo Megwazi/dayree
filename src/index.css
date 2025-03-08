@@ -76,6 +76,14 @@ body {
     @apply max-w-md mx-auto p-4;
   }
 }
+
+.bg-img {
+  background-image: url("../public/bg-heart.svg");
+  background-size: cover;
+  background-repeat: none;
+  background-color: #ffe7eb;
+}
+
 .grape-font {
   font-family: "Grape-Soda";
 }

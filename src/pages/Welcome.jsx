@@ -29,12 +29,12 @@ const Welcome = () => {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <h1 className="text-4xl font-kawaii text-white mb-4 py-5">Dayree</h1>
+          <h1 className="text-4xl paws text-white mb-4 py-5">Dayree</h1>
           <motion.div 
             animate={{ y: [0, -20, 0] }}
             transition={{ repeat: Infinity, duration: 1.5 }}
           >
-            <span className="text-6xl">🎀</span>
+            <span className="text-6xl flex justify-center mb-6"><img src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f380.png'/></span>
           </motion.div>
         </motion.div>
       </div>
@@ -66,21 +66,21 @@ const Welcome = () => {
               animate={{ rotate: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 2 }}
             >
-              🌸
+              <img src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f338.png'/>
             </motion.span>
             <motion.span 
               className="text-5xl"
               animate={{ rotate: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 2, delay: 0.3 }}
             >
-              🐱
+              <img src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f431.png'/>
             </motion.span>
             <motion.span 
               className="text-5xl"
               animate={{ rotate: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 2, delay: 0.6 }}
             >
-              ✨
+              <img src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/2728.png'/>
             </motion.span>
           </div>
           

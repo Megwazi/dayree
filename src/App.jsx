@@ -41,7 +41,7 @@ function App() {
         <div className="text-center">
           <h1 className="text-6xl paws text-white mb-4">Dayree</h1>
           <div className="animate-bounce-slow">
-            <span className="text-5xl">🎀</span>
+            <img className='flex justify-center mb-6' src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f380.png'/>
           </div>
         </div>
       </div>
