@@ -120,13 +120,13 @@ body {
   background-color: #242424;
 } */
 
-.dark .kawaii-card {
+/* .dark .kawaii-card {
   @apply bg-gray-800;
 }
 
 .dark .kawaii-input {
   @apply bg-gray-700 border-gray-600 text-white;
-}
+} */
 
 /* Animations */
 .animate-float {
