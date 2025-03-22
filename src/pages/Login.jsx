@@ -3,35 +3,40 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaArrowLeft, FaEnvelope, FaLock } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
   
-  const { login } = useAuth();
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
     
     if (!email || !password) {
-      setError('Preencha todos os campos!');
+      toast.error('Preencha todos os campos!');
       return;
     }
     
     setIsLoading(true);
     
     try {
-      const success = await login(email, password);
-      if (success) {
+      const { user } = await signIn(email, password);
+      
+      if (user) {
+        toast.success('Login realizado com sucesso!');
         navigate('/app');
       }
     } catch (error) {
-      setError('Falha ao logar, tente novamente!');
-      console.error(error);
+      console.error('Erro ao fazer login:', error);
+      if (error.message === 'Invalid login credentials') {
+        toast.error('Email ou senha incorretos!');
+      } else {
+        toast.error(error.message || 'Falha ao fazer login, tente novamente!');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -45,13 +50,14 @@ const Login = () => {
     setIsLoading(true);
     
     try {
-      const success = await login('demo@example.com', 'password123');
-      if (success) {
+      const { user } = await signIn('demo@example.com', 'password123');
+      if (user) {
+        toast.success('Login realizado com sucesso!');
         navigate('/app');
       }
     } catch (error) {
-      setError('Falha para logar, tente novamente!');
-      console.error(error);
+      console.error('Erro ao fazer login:', error);
+      toast.error(error.message || 'Falha ao fazer login, tente novamente!');
     } finally {
       setIsLoading(false);
     }
@@ -83,12 +89,6 @@ const Login = () => {
               <span className="text-5xl"><img src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f380.png'/></span>
             </motion.div>
           </div>
-          
-          {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4">
-              {error}
-            </div>
-          )}
           
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>

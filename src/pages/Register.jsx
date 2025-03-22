@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaArrowLeft, FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
-import { useAuth } from '../context/AuthContext';
+import { toast } from 'react-toastify';
+import { supabase } from '../config/supabase';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -10,41 +11,93 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
   
-  const { register } = useAuth();
   const navigate = useNavigate();
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
     
     // Validation
     if (!username || !email || !password || !confirmPassword) {
-      setError('Preencha todos os campos!');
+      toast.error('Preencha todos os campos!');
       return;
     }
     
     if (password !== confirmPassword) {
-      setError('Senhas não coincidem!');
+      toast.error('Senhas não coincidem!');
       return;
     }
     
     if (password.length < 6) {
-      setError('A senha deve ter ao menos 6 caracteres!');
+      toast.error('A senha deve ter ao menos 6 caracteres!');
       return;
     }
     
     setIsLoading(true);
     
     try {
-      const success = await register(username, email, password);
-      if (success) {
-        navigate('/app');
+      console.log('Iniciando registro do usuário...');
+      
+      // Registra o usuário com email e senha
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            username: username
+          },
+          emailRedirectTo: `${window.location.origin}/login`
+        }
+      });
+      
+      console.log('Resposta do registro:', { authData, authError });
+      
+      if (authError) {
+        console.error('Erro no registro:', authError);
+        throw authError;
+      }
+      
+      if (authData?.user) {
+        console.log('Usuário criado:', authData.user);
+        
+        // Cria o perfil do usuário
+        const { data: profileData, error: profileError } = await supabase
+          .from('user_profiles')
+          .insert([
+            {
+              user_id: authData.user.id,
+              username: username,
+              email: email,
+              theme: 'light',
+              primary_color: 'kawaii-pink',
+              font_family: 'rounded'
+            }
+          ])
+          .select()
+          .single();
+        
+        console.log('Resposta da criação do perfil:', { profileData, profileError });
+        
+        if (profileError) {
+          console.error('Erro ao criar perfil:', profileError);
+          // Não vamos lançar o erro aqui, apenas logar
+        }
+        
+        toast.success(
+          'Conta criada com sucesso! Por favor, verifique seu email para confirmar o registro.',
+          { autoClose: 10000 } // Mantém a mensagem por 10 segundos
+        );
+        navigate('/login');
+      } else {
+        throw new Error('Não foi possível criar a conta. Tente novamente.');
       }
     } catch (error) {
-      setError('Falha ao criar uma conta, tente novamente!');
-      console.error(error);
+      console.error('Erro completo:', error);
+      toast.error(
+        error.message === 'User already registered'
+          ? 'Este email já está registrado!'
+          : error.message || 'Falha ao criar uma conta, tente novamente!'
+      );
     } finally {
       setIsLoading(false);
     }
@@ -66,7 +119,7 @@ const Register = () => {
           transition={{ duration: 0.5 }}
           className="kawaii-card"
         >
-          <h1 className="text-3xl  text-kawaii-pink mb-6">Junte-se ao Dayree!</h1>
+          <h1 className="text-3xl text-kawaii-pink mb-6">Junte-se ao Dayree!</h1>
           
           <div className="flex justify-center mb-6">
             <motion.div
@@ -77,15 +130,11 @@ const Register = () => {
             </motion.div>
           </div>
           
-          {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4">
-              {error}
-            </div>
-          )}
-          
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-left text-sm font-medium text-gray-700 mb-1">Nome de Usuário</label>
+              <label className="block text-left text-sm font-medium text-gray-700 mb-1">
+                Nome de Usuário
+              </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FaUser className="text-gray-400" />
@@ -101,7 +150,9 @@ const Register = () => {
             </div>
             
             <div>
-              <label className="block text-left text-sm font-medium text-gray-700 mb-1">Email</label>
+              <label className="block text-left text-sm font-medium text-gray-700 mb-1">
+                Email
+              </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FaEnvelope className="text-gray-400" />
@@ -117,7 +168,9 @@ const Register = () => {
             </div>
             
             <div>
-              <label className="block text-left text-sm font-medium text-gray-700 mb-1">Senha</label>
+              <label className="block text-left text-sm font-medium text-gray-700 mb-1">
+                Senha
+              </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FaLock className="text-gray-400" />
@@ -133,7 +186,9 @@ const Register = () => {
             </div>
             
             <div>
-              <label className="block text-left text-sm font-medium text-gray-700 mb-1">Confirmar Senha</label>
+              <label className="block text-left text-sm font-medium text-gray-700 mb-1">
+                Confirmar Senha
+              </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FaLock className="text-gray-400" />
