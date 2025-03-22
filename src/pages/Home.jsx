@@ -70,8 +70,8 @@ const Home = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-kawaii text-kawaii-pink mb-2">
-          Olá, {username || user?.user_metadata?.username || user?.email?.split('@')[0]}! ✨
+        <h1 className="text-5xl brush-font text-kawaii-pink mb-2">
+          Olá, {username || user?.user_metadata?.username || user?.email?.split('@')[0]}!
         </h1>
         <p className="text-gray-600 dark:text-gray-400 capitalize">
           {format(new Date(), "EEEE, d 'de' MMMM", { locale: ptBR })}

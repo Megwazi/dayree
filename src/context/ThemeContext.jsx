@@ -19,52 +19,45 @@ export const ThemeProvider = ({ children }) => {
       if (user) {
         try {
           const { data, error } = await supabase
-            .from('user_settings')
-            .select('*')
+            .from('user_profiles')
+            .select('theme, primary_color, font_family')
             .eq('user_id', user.id)
             .single();
 
-          if (error && error.code !== 'PGRST116') throw error;
+          if (error) {
+            // Se o erro não for "no rows returned", então é um erro real
+            if (error.code !== 'PGRST116') {
+              console.error('Erro ao carregar configurações:', error);
+              toast.error('Falha ao carregar configurações!', {
+                position: 'top-right',
+                autoClose: 3000
+              });
+            }
+            return;
+          }
 
           if (data) {
             setTheme(data.theme || 'light');
             setPrimaryColor(data.primary_color || 'kawaii-pink');
             setFontFamily(data.font_family || 'rounded');
-          } else {
-            // Create default settings for new user
-            const { error: insertError } = await supabase
-              .from('user_settings')
-              .insert([{
-                user_id: user.id,
-                theme: 'light',
-                primary_color: 'kawaii-pink',
-                font_family: 'rounded'
-              }]);
-
-            if (insertError) throw insertError;
           }
         } catch (error) {
           console.error('Erro ao carregar configurações:', error);
-          toast.error('Falha ao carregar configurações!', {
-            position: 'top-right',
-          });
-        } finally {
-          setLoading(false);
         }
       } else {
-        // Check system preference for theme
+        // Verifica preferência do sistema para o tema
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
           setTheme('dark');
         }
-        setLoading(false);
       }
+      setLoading(false);
     };
 
     loadUserSettings();
   }, [user]);
 
   useEffect(() => {
-    // Apply theme to document
+    // Aplica o tema ao documento
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
@@ -77,15 +70,22 @@ export const ThemeProvider = ({ children }) => {
 
     try {
       const { error } = await supabase
-        .from('user_settings')
+        .from('user_profiles')
         .update(settings)
         .eq('user_id', user.id);
 
-      if (error) throw error;
+      if (error) {
+        console.error('Erro ao atualizar configurações:', error);
+        toast.error('Falha ao atualizar configurações!', {
+          position: 'top-right',
+          autoClose: 3000
+        });
+      }
     } catch (error) {
       console.error('Erro ao atualizar configurações:', error);
       toast.error('Falha ao atualizar configurações!', {
         position: 'top-right',
+        autoClose: 3000
       });
     }
   };
