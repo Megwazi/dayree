@@ -13,7 +13,7 @@ import ViewEntry from './pages/ViewEntry';
 import Settings from './pages/Settings';
 import NotFound from './pages/NotFound';
 
-// Components
+// Components OK
 import ProtectedRoute from './components/ProtectedRoute';
 import Layout from './components/Layout';
 
