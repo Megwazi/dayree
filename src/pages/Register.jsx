@@ -6,35 +6,46 @@ import { toast } from 'react-toastify';
 import { supabase } from '../config/supabase';
 
 const Register = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  
   const navigate = useNavigate();
-  
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Validation
-    if (!username || !email || !password || !confirmPassword) {
-      toast.error('Preencha todos os campos!');
+    setLoading(true);
+
+    // Validações
+    if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
+      toast.error('Por favor, preencha todos os campos!', {
+        position: 'top-right',
+      });
+      setLoading(false);
       return;
     }
-    
-    if (password !== confirmPassword) {
-      toast.error('Senhas não coincidem!');
+
+    if (formData.password !== formData.confirmPassword) {
+      toast.error('As senhas não coincidem!', {
+        position: 'top-right',
+      });
+      setLoading(false);
       return;
     }
-    
-    if (password.length < 6) {
-      toast.error('A senha deve ter ao menos 6 caracteres!');
-      return;
-    }
-    
-    setIsLoading(true);
-    
+
+    const { username, email, password } = formData;
+
     try {
       console.log('Iniciando registro do usuário...');
       
@@ -92,139 +103,97 @@ const Register = () => {
         throw new Error('Não foi possível criar a conta. Tente novamente.');
       }
     } catch (error) {
-      console.error('Erro completo:', error);
-      toast.error(
-        error.message === 'User already registered'
-          ? 'Este email já está registrado!'
-          : error.message || 'Falha ao criar uma conta, tente novamente!'
-      );
+      console.error('Erro no processo de registro:', error);
+      toast.error(error.message || 'Erro ao criar conta. Tente novamente.', {
+        position: 'top-right',
+      });
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
-  
+
   return (
-    <div className="min-h-screen bg-img p-6">
-      <div className="max-w-md mx-auto">
-        <div className="mb-3 text-left">
-          <Link to="/" className="inline-flex items-center text-kawaii-pink">
-            <FaArrowLeft className="mr-2" />
-            Voltar
-          </Link>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Crie sua conta
+          </h2>
         </div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="kawaii-card"
-        >
-          <h1 className="text-3xl text-kawaii-pink mb-6">Junte-se ao Dayree!</h1>
-          
-          <div className="flex justify-center mb-6">
-            <motion.div
-              animate={{ rotate: [0, 10, 0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-            >
-              <span className="text-5xl"><img src='https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f380.png'/></span>
-            </motion.div>
-          </div>
-          
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <label className="block text-left text-sm font-medium text-gray-700 mb-1">
-                Nome de Usuário
+              <label htmlFor="username" className="sr-only">
+                Nome de usuário
               </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaUser className="text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="kawaii-input pl-10 w-full"
-                  placeholder="Seu nome de usuário"
-                />
-              </div>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Nome de usuário"
+                value={formData.username}
+                onChange={handleChange}
+              />
             </div>
-            
             <div>
-              <label className="block text-left text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="email" className="sr-only">
                 Email
               </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaEnvelope className="text-gray-400" />
-                </div>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="kawaii-input pl-10 w-full"
-                  placeholder="seu@email.com"
-                />
-              </div>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+              />
             </div>
-            
             <div>
-              <label className="block text-left text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="sr-only">
                 Senha
               </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaLock className="text-gray-400" />
-                </div>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="kawaii-input pl-10 w-full"
-                  placeholder="••••••••"
-                />
-              </div>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Senha"
+                value={formData.password}
+                onChange={handleChange}
+              />
             </div>
-            
             <div>
-              <label className="block text-left text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="confirmPassword" className="sr-only">
                 Confirmar Senha
               </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaLock className="text-gray-400" />
-                </div>
-                <input
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="kawaii-input pl-10 w-full"
-                  placeholder="••••••••"
-                />
-              </div>
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Confirmar Senha"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+              />
             </div>
-            
+          </div>
+
+          <div>
             <button
               type="submit"
-              disabled={isLoading}
-              className="kawaii-button w-full flex justify-center items-center"
+              disabled={loading}
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? (
-                <span className="animate-pulse">Criando Conta...</span>
-              ) : (
-                'Registrar-se'
-              )}
+              {loading ? 'Criando conta...' : 'Criar conta'}
             </button>
-            
-            <div className="text-center">
-              <p className="text-sm text-gray-600">
-                Já possui uma conta?{' '}
-                <Link to="/login" className="text-kawaii-pink font-medium underline">
-                  Login
-                </Link>
-              </p>
-            </div>
-          </form>
-        </motion.div>
+          </div>
+        </form>
       </div>
     </div>
   );

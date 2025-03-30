@@ -18,6 +18,7 @@ export const ThemeProvider = ({ children }) => {
     const loadUserSettings = async () => {
       if (user) {
         try {
+          console.log('Carregando configurações do usuário:', user.id);
           const { data, error } = await supabase
             .from('user_profiles')
             .select('theme, primary_color, font_family')
@@ -32,11 +33,14 @@ export const ThemeProvider = ({ children }) => {
                 position: 'top-right',
                 autoClose: 3000
               });
+            } else {
+              console.log('Nenhuma configuração encontrada para o usuário');
             }
             return;
           }
 
           if (data) {
+            console.log('Configurações carregadas:', data);
             setTheme(data.theme || 'light');
             setPrimaryColor(data.primary_color || 'kawaii-pink');
             setFontFamily(data.font_family || 'rounded');
@@ -45,6 +49,7 @@ export const ThemeProvider = ({ children }) => {
           console.error('Erro ao carregar configurações:', error);
         }
       } else {
+        console.log('Nenhum usuário autenticado, usando tema padrão');
         // Verifica preferência do sistema para o tema
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
           setTheme('dark');
@@ -65,50 +70,78 @@ export const ThemeProvider = ({ children }) => {
     }
   }, [theme]);
 
-  const updateUserSettings = async (settings) => {
+  const updateTheme = async (newTheme) => {
     if (!user) return;
 
     try {
+      console.log('Atualizando tema para:', newTheme);
       const { error } = await supabase
         .from('user_profiles')
-        .update(settings)
+        .update({ theme: newTheme })
         .eq('user_id', user.id);
 
       if (error) {
-        console.error('Erro ao atualizar configurações:', error);
-        toast.error('Falha ao atualizar configurações!', {
-          position: 'top-right',
-          autoClose: 3000
-        });
+        console.error('Erro ao atualizar tema:', error);
+        throw error;
       }
+
+      console.log('Tema atualizado com sucesso');
+      setTheme(newTheme);
     } catch (error) {
-      console.error('Erro ao atualizar configurações:', error);
-      toast.error('Falha ao atualizar configurações!', {
+      console.error('Erro ao atualizar tema:', error);
+      toast.error('Falha ao atualizar o tema!', {
         position: 'top-right',
-        autoClose: 3000
       });
     }
   };
 
-  const toggleTheme = async () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    if (user) {
-      await updateUserSettings({ theme: newTheme });
+  const updatePrimaryColor = async (newColor) => {
+    if (!user) return;
+
+    try {
+      console.log('Atualizando cor primária para:', newColor);
+      const { error } = await supabase
+        .from('user_profiles')
+        .update({ primary_color: newColor })
+        .eq('user_id', user.id);
+
+      if (error) {
+        console.error('Erro ao atualizar cor primária:', error);
+        throw error;
+      }
+
+      console.log('Cor primária atualizada com sucesso');
+      setPrimaryColor(newColor);
+    } catch (error) {
+      console.error('Erro ao atualizar cor primária:', error);
+      toast.error('Falha ao atualizar a cor!', {
+        position: 'top-right',
+      });
     }
   };
 
-  const changeColor = async (color) => {
-    setPrimaryColor(color);
-    if (user) {
-      await updateUserSettings({ primary_color: color });
-    }
-  };
+  const updateFontFamily = async (newFont) => {
+    if (!user) return;
 
-  const changeFont = async (font) => {
-    setFontFamily(font);
-    if (user) {
-      await updateUserSettings({ font_family: font });
+    try {
+      console.log('Atualizando fonte para:', newFont);
+      const { error } = await supabase
+        .from('user_profiles')
+        .update({ font_family: newFont })
+        .eq('user_id', user.id);
+
+      if (error) {
+        console.error('Erro ao atualizar fonte:', error);
+        throw error;
+      }
+
+      console.log('Fonte atualizada com sucesso');
+      setFontFamily(newFont);
+    } catch (error) {
+      console.error('Erro ao atualizar fonte:', error);
+      toast.error('Falha ao atualizar a fonte!', {
+        position: 'top-right',
+      });
     }
   };
 
@@ -116,9 +149,9 @@ export const ThemeProvider = ({ children }) => {
     theme,
     primaryColor,
     fontFamily,
-    toggleTheme,
-    changeColor,
-    changeFont,
+    updateTheme,
+    updatePrimaryColor,
+    updateFontFamily,
     loading
   };
 

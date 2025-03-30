@@ -10,15 +10,29 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Verifica o usuário atual
     const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      setUser(user)
-      setLoading(false)
+      try {
+        console.log('Verificando usuário atual...');
+        const { data: { user }, error } = await supabase.auth.getUser()
+        
+        if (error) {
+          console.error('Erro ao verificar usuário:', error);
+          return;
+        }
+        
+        console.log('Usuário encontrado:', user);
+        setUser(user)
+      } catch (error) {
+        console.error('Erro ao verificar usuário:', error);
+      } finally {
+        setLoading(false)
+      }
     }
 
     getUser()
 
     // Inscreve para mudanças na autenticação
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      console.log('Mudança no estado de autenticação:', { event: _event, session });
       setUser(session?.user ?? null)
       setLoading(false)
     })
@@ -27,26 +41,67 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const signUp = async (email, password) => {
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-    })
-    if (error) throw error
-    return data
+    try {
+      console.log('Iniciando registro...');
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/login`
+        }
+      })
+      
+      if (error) {
+        console.error('Erro no registro:', error);
+        throw error;
+      }
+      
+      console.log('Registro bem sucedido:', data);
+      return data
+    } catch (error) {
+      console.error('Erro no registro:', error);
+      throw error;
+    }
   }
 
   const signIn = async (email, password) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
-    if (error) throw error
-    return data
+    try {
+      console.log('Iniciando login...');
+      console.log('URL do Supabase:', import.meta.env.VITE_SUPABASE_URL);
+      
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+      
+      if (error) {
+        console.error('Erro no login:', error);
+        throw error;
+      }
+      
+      console.log('Login bem sucedido:', data);
+      return data
+    } catch (error) {
+      console.error('Erro no login:', error);
+      throw error;
+    }
   }
 
   const signOut = async () => {
-    const { error } = await supabase.auth.signOut()
-    if (error) throw error
+    try {
+      console.log('Iniciando logout...');
+      const { error } = await supabase.auth.signOut()
+      
+      if (error) {
+        console.error('Erro no logout:', error);
+        throw error;
+      }
+      
+      console.log('Logout bem sucedido');
+    } catch (error) {
+      console.error('Erro no logout:', error);
+      throw error;
+    }
   }
 
   const value = {
