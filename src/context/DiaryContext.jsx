@@ -39,33 +39,35 @@ export const DiaryProvider = ({ children }) => {
 
     loadEntries();
 
-    // Inscreve para atualizações em tempo real
-    const subscription = supabase
-      .channel('entries_changes')
-      .on('postgres_changes', 
-        { 
-          event: '*', 
-          schema: 'public', 
-          table: 'entries',
-          filter: `diary_id=eq.${user?.id}`
-        }, 
-        (payload) => {
-          if (payload.eventType === 'INSERT') {
-            setEntries(prev => [payload.new, ...prev]);
-          } else if (payload.eventType === 'UPDATE') {
-            setEntries(prev => prev.map(entry => 
-              entry.id === payload.new.id ? payload.new : entry
-            ));
-          } else if (payload.eventType === 'DELETE') {
-            setEntries(prev => prev.filter(entry => entry.id !== payload.old.id));
+    // Só inscreve para atualizações em tempo real se tivermos credenciais válidas
+    if (user && import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY) {
+      const subscription = supabase
+        .channel('entries_changes')
+        .on('postgres_changes', 
+          { 
+            event: '*', 
+            schema: 'public', 
+            table: 'entries',
+            filter: `diary_id=eq.${user?.id}`
+          }, 
+          (payload) => {
+            if (payload.eventType === 'INSERT') {
+              setEntries(prev => [payload.new, ...prev]);
+            } else if (payload.eventType === 'UPDATE') {
+              setEntries(prev => prev.map(entry => 
+                entry.id === payload.new.id ? payload.new : entry
+              ));
+            } else if (payload.eventType === 'DELETE') {
+              setEntries(prev => prev.filter(entry => entry.id !== payload.old.id));
+            }
           }
-        }
-      )
-      .subscribe();
+        )
+        .subscribe();
 
-    return () => {
-      subscription.unsubscribe();
-    };
+      return () => {
+        subscription.unsubscribe();
+      };
+    }
   }, [user]);
 
   const addEntry = async (entryData) => {
@@ -110,7 +112,7 @@ export const DiaryProvider = ({ children }) => {
       return true;
     } catch (error) {
       console.error('Erro ao atualizar registro:', error);
-      toast.error('Falha ao atualizar registro!', {
+      toast.error('Falha ao atualizar o registro!', {
         position: 'top-right',
       });
       return false;
@@ -127,13 +129,13 @@ export const DiaryProvider = ({ children }) => {
 
       if (error) throw error;
       
-      toast.success('Registro deletado com sucesso!', {
+      toast.success('Registro excluído com sucesso! 🗑️', {
         position: 'top-right',
       });
       return true;
     } catch (error) {
-      console.error('Erro ao deletar registro:', error);
-      toast.error('Falha ao deletar registro!', {
+      console.error('Erro ao excluir registro:', error);
+      toast.error('Falha ao excluir o registro!', {
         position: 'top-right',
       });
       return false;
