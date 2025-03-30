@@ -4,23 +4,23 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
 // Log para debug
-console.log('Environment variables:', {
+console.log('Configuração do Supabase:', {
   hasUrl: !!supabaseUrl,
   hasKey: !!supabaseAnonKey,
-  url: supabaseUrl ? 'present' : 'missing',
-  key: supabaseAnonKey ? 'present' : 'missing'
+  url: supabaseUrl || 'não configurada',
+  key: supabaseAnonKey ? 'configurada' : 'não configurada'
 })
 
-// Se estiver em desenvolvimento, mostra um aviso mais amigável
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('⚠️ Supabase environment variables are missing.')
-  console.warn('Please check if you have set up your .env file or environment variables in Vercel.')
-  console.warn('Required variables: VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY')
+  console.error('❌ Variáveis de ambiente do Supabase não configuradas!');
+  console.error('Por favor, configure VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY');
 }
 
-// Cria o cliente mesmo se as variáveis estiverem faltando
-// Isso permite que o app carregue e mostre um erro mais amigável
-export const supabase = createClient(
-  supabaseUrl || 'https://placeholder.supabase.co',
-  supabaseAnonKey || 'placeholder-key'
-) 
+// Cria o cliente Supabase
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: true
+  }
+}) 
